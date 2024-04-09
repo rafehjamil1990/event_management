@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Event < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, touch: true
 
   has_and_belongs_to_many :joined_users,
                           class_name: 'User',
