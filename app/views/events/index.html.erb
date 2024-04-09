@@ -1,0 +1,92 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Manage Events</h1>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <!-- Default box -->
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Events</h3>
+    </div>
+
+    <div class="card-body p-0">
+      <table class="table table-striped projects">
+        <thead>
+          <tr>
+            <th style="width: 1%">
+              #
+            </th>
+            <th style="width: 20%">
+              Event Name
+            </th>
+            <th style="width: 30%">
+              Event Description
+            </th>
+            <th class="text-center">
+              Available Slots
+            </th>
+            <th style="width: 8%" class="text-center">
+              Booked Slots
+            </th>
+            <th style="width: 8%" class="text-center">
+              Total Slots
+            </th>
+            <th style="width: 20%">
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @events.each do |event| %>
+            <tr>
+              <td>
+                <%= event.id %>
+              </td>
+              <td>
+                <%= event.name %>
+              </td>
+              <td>
+                <%= event.description %>
+              </td>
+              <td class="text-center">
+                <%= event.available_slots %>
+              </td>
+              <td class="text-center">
+                <%= event.booked_slots %>
+              </td>
+              <td class="text-center">
+                <%= event.total_slots %>
+              </td>
+              <td>
+                <%= link_to event_path(event.id), class: 'btn btn-primary btn-sm' do  %>
+                  <i class="fas fa-folder">
+                  </i>
+                  View
+                <% end %>
+                <%= link_to edit_event_path(event.id), class: 'btn btn-info btn-sm' do  %>
+                  <i class="fas fa-pencil-alt">
+                  </i>
+                  Edit
+                <% end %>
+                <%= link_to event_path(event.id), class: 'btn btn-danger btn-sm', method: :delete do  %>
+                  <i class="fas fa-trash">
+                  </i>
+                  Delete
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</section>

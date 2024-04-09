@@ -1,0 +1,77 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Dashboard</h1>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
+
+        <!-- Profile Image -->
+        <div class="card card-primary card-outline">
+          <div class="card-body box-profile">
+            <div class="text-center">
+              <%= image_tag "user2-160x160.jpg", alt: "User profile picture", class: "profile-user-img img-fluid img-circle" %>
+            </div>
+
+            <h3 class="profile-username text-center"><%= current_user.full_name %></h3>
+
+            <p class="text-muted text-center">Member since: <%= current_user.created_at.year %></p>
+
+            <ul class="list-group list-group-unbordered mb-3">
+              <li class="list-group-item">
+                <b>Events Created</b> <a class="float-right"><%= @user_events.size %></a>
+              </li>
+              <li class="list-group-item">
+                <b>Events Joined</b> <a class="float-right"><%= @joined_events.size %></a>
+              </li>
+            </ul>
+
+            <%= link_to events_path, class: 'btn btn-primary btn-block' do %>
+              <b>View Events</b>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <!-- /.col -->
+      <div class="col-md-9">
+        <div class="card">
+          <div class="card-header p-2">
+            <ul class="nav nav-pills">
+              <li class="nav-item"><a class="nav-link active" href="#events" data-toggle="tab">View Events (This week)</a></li>
+              <li class="nav-item"><a class="nav-link" href="#joined-events" data-toggle="tab">Joined Events</a></li>
+              <li class="nav-item"><a class="nav-link" href="#created-events" data-toggle="tab">Created Events</a></li>
+            </ul>
+          </div>
+
+          <div class="card-body">
+            <div class="tab-content" data-controller="dashboard">
+              <div class="active tab-pane" id="events">
+                <%= render 'events', events: @events, joined_events: @joined_events %>
+              </div>
+
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="joined-events">
+                <%= render 'events', events: @joined_events, joined_events: @joined_events %>
+              </div>
+
+               <!-- /.tab-pane -->
+              <div class="tab-pane" id="created-events">
+                <%= render 'events', events: @user_events, joined_events: @joined_events %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

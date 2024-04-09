@@ -1,0 +1,60 @@
+<!-- Form Content -->
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_for @event, class: 'col-md-12' do |f| %>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Event Details</h3>
+              </div>
+
+              <div class="card-body">
+                <div class="form-group">
+                  <%= f.label :event_name, for: :name %>
+                  <%= f.text_field :name, class: 'form-control', required: true, placeholder: 'Event name' %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :event_description, for: :description %>
+                  <%= f.text_area :description, class: 'form-control', required: true, placeholder: 'Event description', rows: 3 %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :total_tickets, for: :total_slots %>
+                  <%= f.text_field :total_slots, class: 'form-control', required: true, placeholder: 'Total available tickets', type: :number %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="card card-secondary">
+              <div class="card-header">
+                <h3 class="card-title">Location Details</h3>
+              </div>
+
+              <div class="card-body">
+                <div class="form-group">
+                  <%= f.label :lat, for: :lat %>
+                  <%= f.text_field :lat, class: 'form-control', required: true, placeholder: 'Latitude', type: :number %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :long, for: :long %>
+                  <%= f.text_field :long, class: 'form-control', required: true, placeholder: 'Longitude', type: :number %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <%= link_to 'Cancel', events_path, class: 'btn btn-secondary' %>
+            <%= f.submit 'Submit', class: 'btn btn-success float-right' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
