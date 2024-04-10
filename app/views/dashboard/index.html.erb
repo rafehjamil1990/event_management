@@ -19,7 +19,7 @@
         <div class="card card-primary card-outline">
           <div class="card-body box-profile">
             <div class="text-center">
-              <%= image_tag "user2-160x160.jpg", alt: "User profile picture", class: "profile-user-img img-fluid img-circle" %>
+              <%= image_tag current_user.avatar.variant(resize_to_limit: [160, 160]), alt: "User profile picture", class: "profile-user-img img-fluid img-circle" %>
             </div>
 
             <h3 class="profile-username text-center"><%= current_user.full_name %></h3>
@@ -47,7 +47,7 @@
         <div class="card">
           <div class="card-header p-2">
             <ul class="nav nav-pills">
-              <li class="nav-item"><a class="nav-link active" href="#events" data-toggle="tab">View Events (This week)</a></li>
+              <li class="nav-item"><a class="nav-link active" href="#events" data-toggle="tab">View Events</a></li>
               <li class="nav-item"><a class="nav-link" href="#joined-events" data-toggle="tab">Joined Events</a></li>
               <li class="nav-item"><a class="nav-link" href="#created-events" data-toggle="tab">Created Events</a></li>
             </ul>
@@ -55,19 +55,19 @@
 
           <div class="card-body">
             <div class="tab-content" data-controller="dashboard">
-              <div class="active tab-pane" id="events">
-                <%= render 'events', events: @events, joined_events: @joined_events %>
-              </div>
+              <% cache @events do %>
+                <div class="active tab-pane" id="events">
+                  <%= render 'events', events: @events, joined_events: @joined_events %>
+                </div>
 
-              <!-- /.tab-pane -->
-              <div class="tab-pane" id="joined-events">
-                <%= render 'events', events: @joined_events, joined_events: @joined_events %>
-              </div>
+                <div class="tab-pane" id="joined-events">
+                  <%= render 'events', events: @joined_events, joined_events: @joined_events %>
+                </div>
 
-               <!-- /.tab-pane -->
-              <div class="tab-pane" id="created-events">
-                <%= render 'events', events: @user_events, joined_events: @joined_events %>
-              </div>
+                <div class="tab-pane" id="created-events">
+                  <%= render 'events', events: @user_events, joined_events: @joined_events %>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>

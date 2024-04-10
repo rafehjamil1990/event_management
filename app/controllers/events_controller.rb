@@ -14,11 +14,12 @@ class EventsController < ApplicationController
 
   def create
     @event = Events::CreateEvent.new(event_params, current_user).call
+    flash[:alert] = @event.errors.full_messages.join(', ') if @event.errors.present?
 
     if @event.persisted?
-      redirect_to events_path
+      redirect_to events_path, notice: 'Successfully created an event'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -26,18 +27,19 @@ class EventsController < ApplicationController
 
   def update
     @event = Events::UpdateEvent.new(event_params).call
+    flash[:alert] = @event.errors.full_messages.join(', ') if @event.errors.present?
 
     if @event.errors.blank?
-      redirect_to events_path
+      redirect_to events_path, notice: 'Successfully created an event'
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @event = Events::DeleteEvent.new(@event)
+    @event = Events::DeleteEvent.new(@event).call
 
-    redirect_to events_path
+    redirect_to events_path, alert: @event.errors.full_messages.join(', ')
   end
 
   def show

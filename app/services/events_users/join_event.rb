@@ -10,11 +10,16 @@ module EventsUsers
     def call
       ActiveRecord::Base.transaction do
         @event.lock!
-        return unless @event.available_slots.positive?
+
+        if @event.available_slots.zero?
+          @event.errors.add(:base, 'Unable to join event. No available slots.')
+          return @event
+        end
 
         @user.joined_events << @event
         @event.available_slots = @event.available_slots - 1
         @event.save
+        @event
       end
     end
   end

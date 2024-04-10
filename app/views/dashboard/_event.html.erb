@@ -13,7 +13,7 @@
   </div>
   <div class="row">
     <div class="col-12 col-sm-4">
-      <div class="info-box bg-light">
+      <div class="info-box <%= event.available_slots.positive? ? 'bg-light' : 'bg-warning' %>">
         <div class="info-box-content">
           <span class="info-box-text text-center text-muted">Available Slots</span>
           <span class="info-box-number text-center text-muted mb-0"><%= event.available_slots %></span>

@@ -2,7 +2,7 @@
 <section class="content">
   <div class="row">
     <div class="col-md-12">
-      <%= form_for @event, class: 'col-md-12' do |f| %>
+      <%= form_for @event, class: 'col-md-12', data: { controller: 'places', action: 'google-maps-callback@window->places#initMap' } do |f| %>
         <div class="row">
           <div class="col-md-6">
             <div class="card card-primary">

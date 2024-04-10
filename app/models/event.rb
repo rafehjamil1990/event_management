@@ -8,7 +8,7 @@ class Event < ApplicationRecord
                           association_foreign_key: 'user_id'
 
   validates :name, presence: true
-  validates :total_slots, length: { in: 1..1000 }, presence: true
+  validates :total_slots, numericality: { only_integer: true, greater_than: 0 }, presence: true
 
   def booked_slots
     total_slots - available_slots

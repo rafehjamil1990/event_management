@@ -6,6 +6,6 @@ class DashboardController < ApplicationController
   def index
     @user_events = current_user.events
     @joined_events = current_user.joined_events
-    @events = Event.all
+    @events = Event.all.order(created_at: :desc)
   end
 end

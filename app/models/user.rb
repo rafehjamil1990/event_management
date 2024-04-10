@@ -7,6 +7,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :events, dependent: :destroy
+  has_one_attached :avatar do |attachable|
+    attachable.variant :small, resize_to_limit: [160, 160]
+  end
 
   has_and_belongs_to_many :joined_events,
                           class_name: 'Event',

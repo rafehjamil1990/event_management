@@ -11,6 +11,7 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&libraries=places&callback=initMap" async defer data-turbolinks-eval="false"></script>
   </head>
 
   <body class="hold-transition sidebar-mini">
@@ -28,6 +29,8 @@
         <strong>Copyright &copy; 2024 <a href="#">Event Manager</a>.</strong> All rights reserved.
       </footer>
     </div>
+
+    <%= render 'shared/alerts' %>
 
     <%= javascript_import_module_tag "adminlte_theme/plugins/jquery/jquery" %>
     <%= javascript_import_module_tag "adminlte_theme/plugins/bootstrap/js/bootstrap.bundle.min" %>

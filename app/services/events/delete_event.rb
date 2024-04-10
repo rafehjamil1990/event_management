@@ -7,8 +7,8 @@ module Events
     end
 
     def call
-      event.destroy
-      event
+      @event.destroy
+      @event
     end
   end
 end
