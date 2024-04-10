@@ -19,7 +19,8 @@
         <div class="card card-primary card-outline">
           <div class="card-body box-profile">
             <div class="text-center">
-              <%= image_tag current_user.avatar.variant(resize_to_limit: [160, 160]), alt: "User profile picture", class: "profile-user-img img-fluid img-circle" %>
+              <%= image_tag 'avatar2.png', alt: "User profile picture", class: "profile-user-img img-fluid img-circle" %>
+              
             </div>
 
             <h3 class="profile-username text-center"><%= current_user.full_name %></h3>

@@ -1,6 +1,6 @@
 <div class="post">
   <div class="user-block">
-    <%= image_tag "user2-160x160.jpg", alt: "User profile picture", class: "img-circle img-bordered-sm" %>
+    <%= image_tag "photo4.jpg", alt: "User profile picture", class: "img-circle img-bordered-sm" %>
     <span class="username">
       <%= link_to event.name, event_path(event.id) %>
       <% if joined_events.exists?(event.id) %>
@@ -15,7 +15,7 @@
     <div class="col-12 col-sm-4">
       <div class="info-box <%= event.available_slots.positive? ? 'bg-light' : 'bg-warning' %>">
         <div class="info-box-content">
-          <span class="info-box-text text-center text-muted">Available Slots</span>
+          <span class="info-box-text text-center text-muted">Available Tickets</span>
           <span class="info-box-number text-center text-muted mb-0"><%= event.available_slots %></span>
         </div>
       </div>
@@ -23,7 +23,7 @@
     <div class="col-12 col-sm-4">
       <div class="info-box bg-light">
         <div class="info-box-content">
-          <span class="info-box-text text-center text-muted">Booked Slots</span>
+          <span class="info-box-text text-center text-muted">Booked Tickets</span>
           <span class="info-box-number text-center text-muted mb-0"><%= event.booked_slots %></span>
         </div>
       </div>
@@ -31,7 +31,7 @@
     <div class="col-12 col-sm-4">
       <div class="info-box bg-light">
         <div class="info-box-content">
-          <span class="info-box-text text-center text-muted">Total Slots</span>
+          <span class="info-box-text text-center text-muted">Total Tickets</span>
           <span class="info-box-number text-center text-muted mb-0"><%= event.total_slots %></span>
         </div>
       </div>
